@@ -104,9 +104,10 @@ export default function Product() {
 
   useEffect(()=>{
     const [minPrice,maxPrice]= priceValue===null?[0,10000]:priceValue.split("-").map(Number);
+    const routeCategory = param?.levelThree && param.levelThree !== "all" ? param.levelThree : null;
 
     const data={
-      category: null,
+      category: routeCategory,
       color: colorValue || null,
       size: sizeValue || null,
       minPrice,

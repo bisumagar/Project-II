@@ -8,6 +8,7 @@ import OrderDetail from '../customer/components/Order/OrderDetail'
 import Product from '../customer/components/product/Product'
 import ProductDetails from '../customer/components/ProductDetails/ProductDetails'
 import HomePage from '../customer/pages/HomePage/HomePage'
+import SearchPage from '../customer/pages/SearchPage/SearchPage'
 
 
 
@@ -25,6 +26,7 @@ const CustomerRouters = () => {
          <Route path='/cart' element={<Cart/>}></Route>
          <Route path='/:levelOne/:levelTwo/:levelThree' element={<Product/>}></Route>
         <Route path='/product/:productId' element={<ProductDetails/>}></Route>
+        <Route path='/search' element={<SearchPage/>}></Route>
         <Route path='/checkout' element={<CheckOut/>}></Route>
         <Route path='/account/order' element={<Order/>}></Route>
         <Route path='/account/order/:orderId' element={<OrderDetail/>}></Route>

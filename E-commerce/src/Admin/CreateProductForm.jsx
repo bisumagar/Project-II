@@ -183,7 +183,7 @@ const CreateProductForm = () => {
               >
                 <MenuItem value="men">Men</MenuItem>
                 <MenuItem value="women">Women</MenuItem>
-                <MenuItem value="kids">Kids</MenuItem>
+                <MenuItem value="kids"></MenuItem>
               </Select>
             </FormControl>
 
@@ -196,7 +196,7 @@ const CreateProductForm = () => {
                 label="Second Level Category"
               >
                 <MenuItem value="clothing">Clothing</MenuItem>
-                <MenuItem value="accessories">Accessories</MenuItem>
+                <MenuItem value="accessories"></MenuItem>
                 <MenuItem value="brand">Brand</MenuItem>
               </Select>
             </FormControl>
@@ -211,11 +211,18 @@ const CreateProductForm = () => {
               >
                 <MenuItem value="top">Tops</MenuItem>
                 <MenuItem value="women_dress">Dresses</MenuItem>
-                <MenuItem value="t-shirt">T-shirt</MenuItem>
-                <MenuItem value="saree">Saree</MenuItem>
-                <MenuItem value="lengha_choli">Lengha Choli</MenuItem>
+                <MenuItem value="t-shirt">Women's T-shirt</MenuItem>
+                <MenuItem value="mens_t-shirt">Men'T-shirt</MenuItem>
+                <MenuItem value="womens_jackets">Women's Jackets</MenuItem>
+                <MenuItem value="mens_jackets">Men's Jackets </MenuItem>
                 <MenuItem value="mens_kurta">Men's Kurta</MenuItem>
-                <MenuItem value="mens_jeans">Men's Jeans</MenuItem>
+                <MenuItem value="mens_pants">Men's Pants</MenuItem>
+                <MenuItem value="womens_pants">Women's Pants</MenuItem>
+                <MenuItem value="mens_sweater">Men's Sweater</MenuItem>
+                <MenuItem value="men_activwears">Men's Activewear</MenuItem>
+                <MenuItem value="women_activewear">Women's Activewear</MenuItem>
+                <MenuItem value="women_sweater">Women's Sweater</MenuItem>
+
               </Select>
             </FormControl>
           </div>

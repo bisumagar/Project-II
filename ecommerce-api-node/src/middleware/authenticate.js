@@ -10,6 +10,9 @@ const authenticate = async (req, res, next) => {
 
         const userId = jwtProvider.getUserIdFromToken(token);
         const user = await userService.findUserById(userId);
+        if (!user) {
+            return res.status(401).send({ error: "User not found" });
+        }
         req.user = user;
         next();
     } catch (error) {
@@ -20,4 +23,12 @@ const authenticate = async (req, res, next) => {
     }
 };
 
- module.exports={authenticate};
+const requireAdmin = (req, res, next) => {
+    const role = req.user?.role;
+    if (role !== "ADMIN") {
+        return res.status(403).send({ error: "Admin access required" });
+    }
+    return next();
+};
+
+module.exports = { authenticate, requireAdmin };

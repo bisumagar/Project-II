@@ -1,8 +1,10 @@
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import LogoutIcon from '@mui/icons-material/Logout';
 import { Box, CssBaseline, List, ListItem, ListItemButton, ListItemIcon, ListItemText, useMediaQuery, useTheme } from "@mui/material";
 import { useState } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import CreateProductForm from '../CreateProductForm';
 import CustomerTable from '../CustomerTable';
 import Dashboard from '../Dashboard';
@@ -25,6 +27,13 @@ const Admin = () => {
     const isLargeScreen=useMediaQuery(theme.breakpoints.up("lg"));
     const [sideBarVisible,setSideBarVisible] = useState(false);
     const navigate=useNavigate();
+    const dispatch = useDispatch();
+
+    const handleLogout = () => {
+      localStorage.removeItem("jwt");
+      dispatch({ type: "LOGOUT" });
+      navigate("/");
+    };
 
     const drawer=(
         <Box
@@ -58,6 +67,14 @@ const Admin = () => {
                       <AccountCircleIcon/>
                     </ListItemIcon>
                     <ListItemText>Account</ListItemText>
+                </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding onClick={handleLogout}>
+                <ListItemButton>
+                    <ListItemIcon>
+                      <LogoutIcon/>
+                    </ListItemIcon>
+                    <ListItemText>Logout</ListItemText>
                 </ListItemButton>
             </ListItem>
           </List>

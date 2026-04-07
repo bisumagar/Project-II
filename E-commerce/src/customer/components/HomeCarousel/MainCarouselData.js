@@ -1,7 +1,7 @@
 
 const MainCarouselData = [
     {
-        image:"https://www.lashkaraa.com/cdn/shop/articles/lehg.jpg?v=1666788269&width=2048",
+        image:"https://pixpine.com/wp-content/uploads/2024/08/Free-Woman-Wearing-Oversized-T-Shirt-Mockup-1.jpg",
         path:""
     },
     {
@@ -10,7 +10,7 @@ const MainCarouselData = [
     },
 
     {
-        image:"https://www.shutterstock.com/image-photo/karachi-sindh-pakistan-23-may-260nw-2478622199.jpg",
+        image:"https://www.travelandleisure.com/thmb/fdJXR4NHXkpejmsE73QIdb6yeG8=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/tal-l-l-bean-mens-baxter-state-parka-joseph-raccuglia-21-1-7441b77b3e1e448c933c6c2b58144278.jpeg",
         path:""
     }
 ]

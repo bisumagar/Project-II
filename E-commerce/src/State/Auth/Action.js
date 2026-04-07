@@ -78,6 +78,12 @@ export const getUserRequest = () => async (dispatch) => {
     const message = error.response?.data?.message || error.response?.data?.error || error.message;
     dispatch(getUserFailure(message));
     console.error("Profile error:", error.response?.data || error.message);
+
+    const status = error.response?.status;
+    if (status === 401 || status === 403 || String(message).toLowerCase().includes("user not found")) {
+      localStorage.removeItem("jwt");
+      dispatch({ type: LOGOUT, payload: null });
+    }
   }
 };
 

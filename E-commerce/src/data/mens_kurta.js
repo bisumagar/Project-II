@@ -29,10 +29,10 @@ const mens_kurta = [
           "description":"A traditional garment embodying elegance and grace. Crafted from fine fabrics, it features intricate embroidery and a relaxed fit, providing comfort and style."
     },
     {
-        "imageUrl": "https://rukminim1.flixcart.com/image/612/612/xif0q/kurta/l/f/r/xl-k-spl668-yellow-sg-leman-original-imagznqcrahgq9rf.jpeg?q=70",
+        "imageUrl": "https://rukminim2.flixcart.com/image/1366/1366/xif0q/shirt/f/2/z/xl-artical-dn-2-texure-n-and-j-original-imahk459vfhfavuk.jpeg?q=90",
         "brand": "SG LEMAN",
-        "title": "Men Embroidered Jacquard Straight Kurta",
-        "color": "Yellow",
+        "title": "N AND J Men Slim Fit Self Design Spread Collar Casual Shirt",
+        "color": "Coffe",
         "discountedPrice": 799,
         "price": 2499,
         "discountPersent": 68,
@@ -53,17 +53,17 @@ const mens_kurta = [
           "quantity": 100,
           "topLavelCategory": "Men",
           "secondLavelCategory": "Clothing",
-          "thirdLavelCategory": "mens_kurta",
+          "thirdLavelCategory": "men's T-shirt",
           "description":"A traditional garment embodying elegance and grace. Crafted from fine fabrics, it features intricate embroidery and a relaxed fit, providing comfort and style."
     },
     {
-        "imageUrl": "https://rukminim1.flixcart.com/image/612/612/xif0q/kurta/g/6/k/m-sksh-dt1105-pcbl-fubar-original-imafux247zhqym2z-bb.jpeg?q=70",
+        "imageUrl": "https://rukminim2.flixcart.com/image/1366/1366/xif0q/shirt/x/u/r/-original-imahjytwnsge2h5x.jpeg?q=90",
         "brand": "FUBAR",
-        "title": "Men Printed Cotton Blend Straight Kurta",
-        "color": "Blue",
-        "discountedPrice": 399,
-        "price": 1499,
-        "discountPersent": 73,
+        "title": "Sheetal Associates Women Regular Fit Striped Mandarin Collar Casual Shirt",
+        "color": "Yellow",
+        "discountedPrice": 276,
+        "price": 999,
+        "discountPersent": 72,
         "size": [
             {
               "name": "S",
@@ -79,16 +79,16 @@ const mens_kurta = [
             }
           ],
           "quantity": 100,
-          "topLavelCategory": "Men",
+          "topLavelCategory": "Women",
           "secondLavelCategory": "Clothing",
-          "thirdLavelCategory": "mens_kurta",
+          "thirdLavelCategory": "women's T-shirt",
           "description":"A traditional garment embodying elegance and grace. Crafted from fine fabrics, it features intricate embroidery and a relaxed fit, providing comfort and style."
     },
     {
-        "imageUrl": "https://rukminim1.flixcart.com/image/612/612/xif0q/kurta/i/v/x/xxl-br-ad-kt-105-adwyn-peter-original-imagj4zyd2q7t6cg.jpeg?q=70",
+        "imageUrl": "https://rukminim2.flixcart.com/image/1366/1366/xif0q/jacket/6/i/e/xxl-1-no-kblbg-zip-kbjacket-kelonbro-original-imahgg8swpkgq2fe.jpeg?q=90",
         "brand": "ALY JOHN",
-        "title": "Men Solid Pure Cotton Straight Kurta",
-        "color": "White",
+        "title": "KELONBRO Men Applique Casual Jacket",
+        "color": "Beige02, Black02",
         "discountedPrice": 474,
         "price": 1999,
         "discountPersent": 76,
@@ -109,14 +109,14 @@ const mens_kurta = [
           "quantity": 100,
           "topLavelCategory": "Men",
           "secondLavelCategory": "Clothing",
-          "thirdLavelCategory": "mens_kurta",
+          "thirdLavelCategory": "men's Jacket",
           "description":"A traditional garment embodying elegance and grace. Crafted from fine fabrics, it features intricate embroidery and a relaxed fit, providing comfort and style."
     },
     {
-        "imageUrl": "https://rukminim1.flixcart.com/image/612/612/xif0q/kurta/j/a/r/l-poch521835-peter-england-original-imag7jg47g7cxhg3-bb.jpeg?q=70",
+        "imageUrl": "https://rukminim2.flixcart.com/image/1366/1366/xif0q/jacket/9/3/p/xl-1-no-mt2-jkt-arrow-print-ice-blue-white-motrex-original-imahgnjm9qmkzfwz.jpeg?q=90",
         "brand": "PETER ENGLAND",
-        "title": "Men Woven Design Pure Cotton Straight Kurta",
-        "color": "Grey",
+        "title": "motrex Men Applique Casual Jacket",
+        "color": "Ice Blue & White",
         "discountedPrice": 524,
         "price": 1049,
         "discountPersent": 50,
@@ -137,14 +137,14 @@ const mens_kurta = [
           "quantity": 100,
           "topLavelCategory": "Men",
           "secondLavelCategory": "Clothing",
-          "thirdLavelCategory": "mens_kurta",
+          "thirdLavelCategory": "mens_jacket",
           "description":"A traditional garment embodying elegance and grace. Crafted from fine fabrics, it features intricate embroidery and a relaxed fit, providing comfort and style."
     },
     {
-        "imageUrl": "https://rukminim1.flixcart.com/image/612/612/xif0q/kurta/y/c/x/xl-kast107hp-majestic-man-original-imafw49u5uty4agx-bb.jpeg?q=70",
-        "brand": "Majestic Man",
-        "title": "Men Solid Pure Cotton Straight Kurta",
-        "color": "Pink",
+        "imageUrl": "https://rukminim2.flixcart.com/image/1366/1366/xif0q/short/k/s/t/l-wmensrt-tops-nova-original-imahmfa7ncf3zsc3.jpeg?q=90",
+        "brand": "Majestic Women",
+        "title": "Tops Nova Pack of 2 Solid Women Black, Grey Gym Shorts, Running Shorts, Sports Shorts, Casual Shorts",
+        "color": "Grey, Black",
         "discountedPrice": 499,
         "price": 1499,
         "discountPersent": 66,
@@ -163,16 +163,16 @@ const mens_kurta = [
             }
           ],
           "quantity": 100,
-          "topLavelCategory": "Men",
+          "topLavelCategory": "Women",
           "secondLavelCategory": "Clothing",
-          "thirdLavelCategory": "mens_kurta",
+          "thirdLavelCategory": "Women's Shorts",
           "description":"A traditional garment embodying elegance and grace. Crafted from fine fabrics, it features intricate embroidery and a relaxed fit, providing comfort and style."
     },
     {
-        "imageUrl": "https://rukminim1.flixcart.com/image/612/612/kpodocw0/t-shirt/x/o/4/xl-wr-64-wrodss-original-imag3upwgq9n9fbv.jpeg?q=70",
+        "imageUrl": "https://rukminim2.flixcart.com/image/1366/1366/xif0q/sweater/8/a/b/xl-8309stgrey-varenyam-original-imagjrhdgwtj73uk.jpeg?q=90",
         "brand": "WRODSS",
-        "title": "Men Solid Cotton Blend Straight Kurta",
-        "color": "Black",
+        "title": "Varenyam Women Self Design Round Neck Grey Sweater",
+        "color": "Grey",
         "discountedPrice": 277,
         "price": 999,
         "discountPersent": 72,
@@ -191,16 +191,16 @@ const mens_kurta = [
             }
           ],
           "quantity": 100,
-          "topLavelCategory": "Men",
+          "topLavelCategory": "Women",
           "secondLavelCategory": "Clothing",
-          "thirdLavelCategory": "mens_kurta",
+          "thirdLavelCategory": "Women's Sweaters",
           "description":"A traditional garment embodying elegance and grace. Crafted from fine fabrics, it features intricate embroidery and a relaxed fit, providing comfort and style."
     },
     {
-        "imageUrl": "https://rukminim1.flixcart.com/image/612/612/l4zxn680/kurta/i/g/u/s-mtml0039-341-manthan-original-imagfrz3gwgdtczm.jpeg?q=70",
+        "imageUrl": "https://rukminim2.flixcart.com/image/1366/1366/xif0q/trouser/d/p/y/32-bi-trouser-combraided-original-imagyytzgzybuynb.jpeg?q=90",
         "brand": "Manthan",
-        "title": "Men Printed Cotton Blend Straight Kurta",
-        "color": "Blue",
+        "title": "COMBRAIDED Men Slim Fit Khaki Lycra Blend Trousers",
+        "color": "Grey",
         "discountedPrice": 765,
         "price": 1049,
         "discountPersent": 27,
@@ -221,7 +221,7 @@ const mens_kurta = [
           "quantity": 100,
           "topLavelCategory": "Men",
           "secondLavelCategory": "Clothing",
-          "thirdLavelCategory": "mens_kurta",
+          "thirdLavelCategory": "mens_pants",
           "description":"A traditional garment embodying elegance and grace. Crafted from fine fabrics, it features intricate embroidery and a relaxed fit, providing comfort and style."
     },
     {
@@ -253,13 +253,13 @@ const mens_kurta = [
           "description":"A traditional garment embodying elegance and grace. Crafted from fine fabrics, it features intricate embroidery and a relaxed fit, providing comfort and style."
     },
     {
-        "imageUrl": "https://rukminim1.flixcart.com/image/612/612/xif0q/kurta/u/v/m/l-grey-106-yellow-freluro-original-imagc26vdpwxgztu-bb.jpeg?q=70",
+        "imageUrl": "https://rukminim2.flixcart.com/image/1366/1366/xif0q/sweatshirt/f/x/5/xl-dummy-navy-6-3-carmelgarments-original-imahhzxbyegwh9qv.jpeg?q=90 ",
         "brand": "FRELURO",
-        "title": "Men Printed Cotton Blend Straight Kurta",
-        "color": "Yellow",
-        "discountedPrice": 429,
-        "price": 999,        
-        "discountPersent": 57,
+        "title": "CARMELGARMENTS Men Full Sleeve Printed Sweatshirt",
+        "color": "Dark Blue",
+        "discountedPrice": 1429,
+        "price": 1999,        
+        "discountPersent": 25,
         "size": [
             {
               "name": "S",

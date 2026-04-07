@@ -1,22 +1,22 @@
 'use client'
 
 import {
-  Dialog,
-  DialogBackdrop,
-  DialogPanel,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems,
-  Popover,
-  PopoverButton,
-  PopoverGroup,
-  PopoverPanel,
-  Tab,
-  TabGroup,
-  TabList,
-  TabPanel,
-  TabPanels,
+    Dialog,
+    DialogBackdrop,
+    DialogPanel,
+    Menu,
+    MenuButton,
+    MenuItem,
+    MenuItems,
+    Popover,
+    PopoverButton,
+    PopoverGroup,
+    PopoverPanel,
+    Tab,
+    TabGroup,
+    TabList,
+    TabPanel,
+    TabPanels,
 } from '@headlessui/react'
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Fragment, useEffect, useState } from 'react'
@@ -48,8 +48,8 @@ const navigation = () => {
   const getProductRoute = (category, section, item) => {
     const categorySlug = category.name.toLowerCase()
     const sectionSlug = section.id
-    const itemSlug = item.name.toLowerCase().replace(/\s+/g, '-')
-    return `/${categorySlug}/${sectionSlug}/${itemSlug}`
+    const itemKey = item.value ?? item.name.toLowerCase().replace(/\s+/g, '-')
+    return `/${categorySlug}/${sectionSlug}/${itemKey}`
   }
 
   // Fetch user profile if JWT exists
@@ -60,6 +60,13 @@ const navigation = () => {
     }
   }, [auth.user, dispatch])
 
+  // Open auth modal automatically on /login or /register
+  useEffect(() => {
+    if ((location.pathname === "/login" || location.pathname === "/register") && !auth.user) {
+      setOpenAuthModal(true)
+    }
+  }, [auth.user, location.pathname])
+
   // Close modal and redirect after successful auth
   useEffect(() => {
     if (auth.user) {
@@ -68,10 +75,12 @@ const navigation = () => {
 
       // If user just logged in from /login or /register, send them home
       if (location.pathname === "/login" || location.pathname === "/register") {
-        navigate("/")
+        const isAdminLogin = new URLSearchParams(location.search).get("admin") === "1"
+        if (isAdminLogin && auth.user?.role === "ADMIN") navigate("/admin")
+        else navigate("/")
       }
     }
-  }, [auth.user, location.pathname, navigate])
+  }, [auth.user, location.pathname, location.search, navigate])
 
   // Helper function to handle navigation and close popover
   const handleNavigation = (route, closePopover) => {
@@ -224,7 +233,7 @@ const navigation = () => {
                     className="absolute right-0 mt-2 w-48 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                   >
                     <div className="py-1">
-                      <MenuItem>
+                      {/* <MenuItem>
                         {({ focus }) => (
                           <a
                             onClick={(e) => { e.preventDefault(); navigate("/profile") }}
@@ -233,7 +242,7 @@ const navigation = () => {
                             Profile
                           </a>
                         )}
-                      </MenuItem>
+                      </MenuItem> */}
                       <MenuItem>
                         {({ focus }) => (
                           <a
@@ -258,12 +267,48 @@ const navigation = () => {
                   </MenuItems>
                 </Menu>
               ) : (
-                <button
-                  onClick={() => setOpenAuthModal(true)}
-                  className="text-indigo-600 font-medium text-sm uppercase hover:text-indigo-800"
-                >
-                  Sign in
-                </button>
+                <Menu as="div" className="relative z-50">
+                  <MenuButton className="text-indigo-600 font-medium text-sm uppercase hover:text-indigo-800">
+                    Sign in
+                  </MenuButton>
+                  <MenuItems
+                    transition
+                    className="absolute left-1/2 -translate-x-1/2 mt-2 w-48 origin-top rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                  >
+                    <div className="py-1">
+                      <MenuItem>
+                        {({ focus }) => (
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setOpen(false)
+                              navigate("/login")
+                              setOpenAuthModal(true)
+                            }}
+                            className={`block w-full text-left px-4 py-2 text-sm text-gray-700 ${focus ? 'bg-gray-100' : ''}`}
+                          >
+                            Login as User
+                          </button>
+                        )}
+                      </MenuItem>
+                      <MenuItem>
+                        {({ focus }) => (
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setOpen(false)
+                              navigate("/login?admin=1")
+                              setOpenAuthModal(true)
+                            }}
+                            className={`block w-full text-left px-4 py-2 text-sm text-gray-700 ${focus ? 'bg-gray-100' : ''}`}
+                          >
+                            Login as Admin
+                          </button>
+                        )}
+                      </MenuItem>
+                    </div>
+                  </MenuItems>
+                </Menu>
               )}
             </div>
           </DialogPanel>
@@ -271,9 +316,9 @@ const navigation = () => {
       </Dialog>
 
       <header className="relative bg-white">
-        <p className="flex h-10 items-center justify-center bg-indigo-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
+        {/* <p className="flex h-10 items-center justify-center bg-indigo-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
           Get free delivery on orders over $100
-        </p>
+        </p> */}
 
         <nav aria-label="Top" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="border-b border-gray-200">
@@ -475,18 +520,65 @@ const navigation = () => {
     </MenuItems>
   </Menu>
 ) : (
-  <button
-    onClick={() => setOpenAuthModal(true)}
-    className="text-indigo-600 font-medium text-sm uppercase hover:text-indigo-800"
-  >
-    Sign in
-  </button>
+  <Menu as="div" className="relative z-50">
+    <MenuButton className="text-indigo-600 font-medium text-sm uppercase hover:text-indigo-800">
+      Sign in
+    </MenuButton>
+    <MenuItems
+      transition
+      className="absolute right-0 mt-2 w-48 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+    >
+      <div className="py-1">
+        <MenuItem>
+          {({ focus }) => (
+            <button
+              type="button"
+              onClick={() => {
+                navigate("/login")
+                setOpenAuthModal(true)
+              }}
+              className={`block w-full text-left px-4 py-2 text-sm text-gray-700 ${focus ? 'bg-gray-100' : ''}`}
+            >
+              Login as User
+            </button>
+          )}
+        </MenuItem>
+        <MenuItem>
+          {({ focus }) => (
+            <button
+              type="button"
+              onClick={() => {
+                navigate("/login?admin=1")
+                setOpenAuthModal(true)
+              }}
+              className={`block w-full text-left px-4 py-2 text-sm text-gray-700 ${focus ? 'bg-gray-100' : ''}`}
+            >
+              Login as Admin
+            </button>
+          )}
+        </MenuItem>
+      </div>
+    </MenuItems>
+  </Menu>
 )}
 
 
 
                 {/* Search */}
-                <a href="#" className="p-2 text-gray-400 hover:text-gray-500">
+                <a
+                  href="/search"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    const token = localStorage.getItem("jwt")
+                    if (!auth?.user && !token) {
+                      navigate("/login")
+                      setOpenAuthModal(true)
+                      return
+                    }
+                    navigate("/search")
+                  }}
+                  className="p-2 text-gray-400 hover:text-gray-500 cursor-pointer"
+                >
                   <span className="sr-only">Search</span>
                   <MagnifyingGlassIcon aria-hidden="true" className="size-6" />
                 </a>

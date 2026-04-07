@@ -1,5 +1,6 @@
 import { Box, Modal } from '@mui/material';
 import { useLocation } from 'react-router-dom';
+import AdminLoginForm from './AdminLoginForm';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 
@@ -18,6 +19,7 @@ const style = {
 const AuthModal = ({handleClose, open, onSignInSuccess}) => {
 
   const location = useLocation();
+  const isAdminLogin = new URLSearchParams(location.search).get("admin") === "1";
 
   return (
     <Modal
@@ -27,7 +29,7 @@ const AuthModal = ({handleClose, open, onSignInSuccess}) => {
       aria-describedby="modal-modal-description"
     >
       <Box sx={style}>
-        {location.pathname==="/login"? <LoginForm/> : <RegisterForm/>}
+        {location.pathname === "/login" ? (isAdminLogin ? <AdminLoginForm/> : <LoginForm/>) : <RegisterForm/>}
       </Box>
     </Modal>
   )

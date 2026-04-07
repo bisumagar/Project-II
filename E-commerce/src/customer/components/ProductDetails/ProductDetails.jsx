@@ -18,15 +18,15 @@ const dummyProduct = {
     ],
     images: [
         {
-            src: 'https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-02-secondary-product-shot.jpg',
+            src: 'https://rukminim2.flixcart.com/image/1366/1366/xif0q/shirt/b/t/n/xl-chkesdsa01-dimmy-original-imahmfu3sqrmh3q8.jpeg?q=90',
             alt: 'Two each of gray, white, and black shirts laying flat.',
         },
         {
-            src: 'https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg',
+            src: 'https://rukminim2.flixcart.com/image/1366/1366/xif0q/shirt/0/w/u/s-duplicate-sys-a4005-funday-fashion-original-imagvsbgmzuatfds.jpeg?q=90',
             alt: 'Model wearing plain black basic tee.',
         },
         {
-            src: 'https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg',
+            src: 'https://rukminim2.flixcart.com/image/1366/1366/xif0q/trouser/b/j/p/xl-terry-grey-triraj-original-imahjh67e4uzjthj.jpeg?q=90',
             alt: 'Model wearing plain gray basic tee.',
         },
         {
@@ -69,11 +69,18 @@ export default function ProductDetails() {
     const params = useParams();
     const dispatch=useDispatch();
     const { product: productFromStore, loading } = useSelector((state) => state.product);
+    const auth = useSelector((state) => state.auth);
     // const {product}=useSelector(store=>store);
 
     // console.log("....",params.productId)
 
     const handleAddToCart = () => {
+        const token = localStorage.getItem("jwt");
+        if (!auth?.user && !token) {
+            navigate("/login");
+            return;
+        }
+
         const product = productFromStore || dummyProduct;
         const productId = product._id || product.id;
         if (!productId) return;
@@ -87,7 +94,7 @@ export default function ProductDetails() {
         navigate('/cart');
     };
     useEffect(()=>{
-        if (params.productId) {
+        if (params.productId && params.productId !== "undefined" && params.productId !== "null") {
             dispatch(findProductsById(params.productId));
         }
     },[dispatch,params.productId])

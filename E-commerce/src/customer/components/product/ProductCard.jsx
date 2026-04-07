@@ -3,10 +3,14 @@ import "./ProductCard.css";
 
 const ProductCard = ({ product, productId }) => {
   const navigate = useNavigate();
+  const id = productId ?? product?._id ?? product?.id;
 
   return (
     <div
-      onClick={() => navigate(`/product/${productId}`)}
+      onClick={() => {
+        if (!id) return;
+        navigate(`/product/${id}`);
+      }}
       className="product-card w-64 mt-3 cursor-pointer transition-all hover:shadow-lg"
     >
       {/* IMAGE */}
