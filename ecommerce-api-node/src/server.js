@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const { connectDB } = require("./config/db");
+require("dotenv").config();
 
 const authRoute = require("./route/authRoute");
 const userRoute = require("./route/userRoute");
@@ -16,7 +17,7 @@ const reviewRoute = require("./route/reviewRoute");
 const app = express();
 
 app.use(express.json());
-
+const Port = process.env.PORT || 5454;
 // Mount all API routes BEFORE the catch-all
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
@@ -40,5 +41,5 @@ app.get(/^(?!\/api).*/, (req, res) => {
 const PORT = 5454;
 app.listen(PORT, async () => {
   await connectDB();
-  console.log("E-commerce api listening on PORT", PORT);
+  console.log("E-commerce api listening on PORT", Port);
 });
