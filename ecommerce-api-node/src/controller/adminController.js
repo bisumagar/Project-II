@@ -11,6 +11,15 @@ const getAllOrders=async(req,res)=>{
     }
 }
 
+const getOrderAnalytics = async (req, res) => {
+    try {
+        const analytics = await orderService.getOrderAnalytics();
+        return res.status(200).send(analytics);
+    } catch (error) {
+        return res.status(500).send({ error: error.message });
+    }
+}
+
 const confirmedOrders=async(req,res)=>{
     const orderId=req.params.orderId;
     try {
@@ -72,6 +81,7 @@ const deleteOrders=async(req,res)=>{
 }
 module.exports={
     getAllOrders,
+    getOrderAnalytics,
     confirmedOrders,
     shippOrders,
     deliverOrders,

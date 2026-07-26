@@ -8,6 +8,7 @@ const AdminRouters = () => {
   const dispatch = useDispatch()
   const auth = useSelector((state) => state.auth)
   const token = typeof window !== "undefined" ? localStorage.getItem("jwt") : null
+  const role = String(auth.user?.role || "").trim().toUpperCase()
 
   useEffect(() => {
     if (token && !auth.user && !auth.isLoading) {
@@ -21,8 +22,11 @@ const AdminRouters = () => {
   // wait for profile
   if (auth.isLoading && !auth.user) return null
 
+  // wait until profile is loaded before rendering admin routes
+  if (!auth.user) return null
+
   // logged in but not admin
-  if (auth.user && auth.user.role !== "ADMIN") return <Navigate to="/login" replace />
+  if (role !== "ADMIN" && role !== "ROLE_ADMIN") return <Navigate to="/login" replace />
 
   return (
     <div>

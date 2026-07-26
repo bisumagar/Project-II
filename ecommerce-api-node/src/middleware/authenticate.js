@@ -24,8 +24,10 @@ const authenticate = async (req, res, next) => {
 };
 
 const requireAdmin = (req, res, next) => {
-    const role = req.user?.role;
-    if (role !== "ADMIN") {
+    const role = String(req.user?.role || "")
+        .trim()
+        .toUpperCase();
+    if (role !== "ADMIN" && role !== "ROLE_ADMIN") {
         return res.status(403).send({ error: "Admin access required" });
     }
     return next();

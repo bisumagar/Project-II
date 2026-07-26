@@ -21,14 +21,11 @@ import {
   deleteOrder,
   deliverOrder,
   getOrders,
-  shipOrder,
 } from "../State/Admin/Order/Action";
 
 const statusStyles = (statusRaw) => {
   const status = (statusRaw || "").toUpperCase();
   switch (status) {
-    case "SHIPPED":
-      return { bg: "#3f51b5", color: "white" };
     case "CONFIRMED":
       return { bg: "#4caf50", color: "white" };
     case "PENDING":
@@ -64,7 +61,6 @@ const OrdersTable = () => {
   const handleChangeStatus = (type) => {
     if (!selectedOrderId) return;
     if (type === "CONFIRMED") dispatch(confirmOrder(selectedOrderId));
-    else if (type === "SHIPPED") dispatch(shipOrder(selectedOrderId));
     else if (type === "DELIVERED") dispatch(deliverOrder(selectedOrderId));
     closeStatusMenu();
   };
@@ -173,7 +169,8 @@ const OrdersTable = () => {
                   </TableCell>
                   <TableCell align="left">
                     {(() => {
-                      const status = order.orderStatus || order.status || "-";
+                      const rawStatus = order.orderStatus || order.status || "-";
+                      const status = String(rawStatus).toUpperCase() === "SHIPPED" ? "CONFIRMED" : rawStatus;
                       const { bg, color } = statusStyles(status);
                       return (
                         <span
@@ -226,9 +223,6 @@ const OrdersTable = () => {
       >
         <MenuItem onClick={() => handleChangeStatus("CONFIRMED")}>
           Confirmed Order
-        </MenuItem>
-        <MenuItem onClick={() => handleChangeStatus("SHIPPED")}>
-          Shipped Order
         </MenuItem>
         <MenuItem onClick={() => handleChangeStatus("DELIVERED")}>
           Delivered Order

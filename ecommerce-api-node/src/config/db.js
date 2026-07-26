@@ -1,6 +1,8 @@
 const mongoose = require("mongoose")
+require("dotenv").config();
 
-const mondbUrl = "mongodb+srv://bishaldeveloper:Bhakta%40123@cluster0.7ygefag.mongodb.net/?appName=Cluster0";
+const mondbUrl = process.env.URL;
+
 const connectDB=()=>{
     return mongoose.connect(mondbUrl);
 

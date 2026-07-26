@@ -1,7 +1,51 @@
+import { Button } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { addItemToCart } from "../../../State/Cart/Action";
 
-const HomeSectionCard = ({product}) => {
+const HomeSectionCard = ({ product, enableAddToCart = false }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const auth = useSelector((state) => state.auth);
+  const productId = product?._id || product?.id;
+
+  const getDefaultSize = () => {
+    const rawSizes = product?.sizes || product?.size || [];
+    if (Array.isArray(rawSizes) && rawSizes.length > 0) {
+      const first = rawSizes[0];
+      return first?.name || first?.size || first || "S";
+    }
+    if (typeof rawSizes === "string" && rawSizes.trim()) return rawSizes.trim();
+    return "S";
+  };
+
+  const handleCardClick = () => {
+    if (!productId) return;
+    navigate(`/product/${productId}`);
+  };
+
+  const handleAddToCart = (event) => {
+    event.stopPropagation();
+    if (!productId) return;
+
+    const token = localStorage.getItem("jwt");
+    if (!auth?.user && !token) {
+      navigate("/login");
+      return;
+    }
+
+    dispatch(
+      addItemToCart({
+        data: { productId, size: getDefaultSize(), quantity: 1 },
+      })
+    );
+    navigate("/cart");
+  };
+
   return (
-    <div className='cursor-pointer
+    <div
+      onClick={handleCardClick}
+      className='cursor-pointer
         flex flex-col
         items-center
         bg-white
@@ -9,7 +53,8 @@ const HomeSectionCard = ({product}) => {
         shadow-lg
         overflow-hidden
         w-56
-        mx-3 '>
+        mx-3 '
+    >
      
       <div className='h-52 w-40'>
 
@@ -21,6 +66,16 @@ const HomeSectionCard = ({product}) => {
         <p className='mt-2 text-sm text-gray-500 '>{product.description}
 
         </p>
+        {enableAddToCart && (
+          <Button
+            variant="contained"
+            size="small"
+            sx={{ mt: 2, bgcolor: "#9155fd" }}
+            onClick={handleAddToCart}
+          >
+            Add To Cart
+          </Button>
+        )}
       </div> 
     </div>
   )

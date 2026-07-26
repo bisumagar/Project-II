@@ -49,11 +49,14 @@ export const createProduct=(product)=>async(dispatch)=>{
         dispatch({type:CREATE_PRODUCT_REQUEST})
 
         // api already has baseURL = API_BASE_URL, so use a relative path
-        // Map frontend field discountedPersent -> backend-required discountPercent
+        // Map frontend fields to backend-required shape.
         const payload = {
             ...product,
             discountPercent: product.discountedPersent,
+            sizes: product.sizes ?? product.size ?? [],
         };
+        // Keep a single source of truth for backend contract.
+        delete payload.size;
 
         const { data } = await api.post('/admin/products', payload);
         console.log("created products", data);

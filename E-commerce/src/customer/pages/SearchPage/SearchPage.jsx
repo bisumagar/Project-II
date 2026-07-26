@@ -109,6 +109,9 @@ const SearchPage = () => {
           <p className="text-sm text-gray-500">Type something to search (fuzzy matching enabled).</p>
         )} */}
         {loading && <p className="text-sm text-gray-500">Searching...</p>}
+        {!loading && !error && qParam.trim() && results.length === 0 && (
+          <p className="text-sm text-gray-500">Product not found.</p>
+        )}
       </div>
 
       <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">

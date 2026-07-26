@@ -216,12 +216,18 @@ const CreateProductForm = () => {
                 <MenuItem value="womens_jackets">Women's Jackets</MenuItem>
                 <MenuItem value="mens_jackets">Men's Jackets </MenuItem>
                 <MenuItem value="mens_kurta">Men's Kurta</MenuItem>
+                 <MenuItem value="womens_kurta">Women's Kurta</MenuItem>
+
                 <MenuItem value="mens_pants">Men's Pants</MenuItem>
                 <MenuItem value="womens_pants">Women's Pants</MenuItem>
                 <MenuItem value="mens_sweater">Men's Sweater</MenuItem>
                 <MenuItem value="men_activwears">Men's Activewear</MenuItem>
                 <MenuItem value="women_activewear">Women's Activewear</MenuItem>
                 <MenuItem value="women_sweater">Women's Sweater</MenuItem>
+                <MenuItem value="women_shoes">Women's Shoes</MenuItem>
+                <MenuItem value="mens_shoes">Men's Shoes</MenuItem>
+                <MenuItem value="women_slipper">Women's Slippers</MenuItem>
+                <MenuItem value="mens_slipper">Men's Slippers</MenuItem>
 
               </Select>
             </FormControl>

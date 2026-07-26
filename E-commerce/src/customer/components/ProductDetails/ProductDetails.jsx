@@ -2,9 +2,8 @@ import { Box, Button, Grid, LinearProgress, Rating } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
-import mens_kurta from '../../../data/mens_kurta'
 import { addItemToCart } from '../../../State/Cart/Action'
-import { findProductsById } from '../../../State/Products/Action'
+import { findProducts, findProductsById } from '../../../State/Products/Action'
 import HomeSectionCard from '../homeSectionCard/HomeSectionCard'
 import ProductReviewCard from './ProductReviewCard'
 
@@ -68,7 +67,7 @@ export default function ProductDetails() {
     const navigate=useNavigate();
     const params = useParams();
     const dispatch=useDispatch();
-    const { product: productFromStore, loading } = useSelector((state) => state.product);
+    const { product: productFromStore, products, loading } = useSelector((state) => state.product);
     const auth = useSelector((state) => state.auth);
     // const {product}=useSelector(store=>store);
 
@@ -98,6 +97,23 @@ export default function ProductDetails() {
             dispatch(findProductsById(params.productId));
         }
     },[dispatch,params.productId])
+
+    useEffect(() => {
+        dispatch(
+            findProducts({
+                color: "",
+                size: "",
+                minPrice: 0,
+                maxPrice: 1000000,
+                discount: 0,
+                category: "",
+                stock: "",
+                sort: "price_low",
+                page: 0,
+                pageSize: 50,
+            })
+        );
+    }, [dispatch]);
 
     const product = productFromStore || dummyProduct;
     const DEFAULT_SIZES = [{ name: 'S' }, { name: 'M' }, { name: 'L' }, { name: 'XL' }];
@@ -478,8 +494,11 @@ export default function ProductDetails() {
                         Similar Product
                     </h1>
                     <div className='flex flex-wrap flex-row justify-between space-y-5'>
-                        {mens_kurta.map((item, idx) => (
-                            <HomeSectionCard key={idx} product={item}/>
+                        {(products || [])
+                            .filter((item) => (item?._id || item?.id) !== params.productId)
+                            .slice(0, 10)
+                            .map((item, idx) => (
+                            <HomeSectionCard key={item?._id || item?.id || idx} product={item} enableAddToCart />
                         ))}
                     </div>
                 </section>

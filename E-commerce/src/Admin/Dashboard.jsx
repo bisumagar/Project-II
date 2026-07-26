@@ -1,4 +1,5 @@
 import Achievement from "./components/Achievement";
+import AnalyticsPanel from "./AnalyticsPanel";
 import MonthlyOverview from "./MonthlyOverview";
 import OrdersTableView from "./View/OrderTableView";
 import ProductsTableView from "./View/ProductTableVIew";
@@ -18,6 +19,10 @@ const Dashboard = () => {
             <MonthlyOverview />
           </div>
         </div>
+      </div>
+
+      <div className="mb-6">
+        <AnalyticsPanel />
       </div>
 
       {/* Bottom row: All Orders + All Products */}

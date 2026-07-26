@@ -1,5 +1,5 @@
 const productService =require("../service/productService.js");
-const { bestSimilarity, normalize } = require("../utils/fuzzySearch.js");
+const { bestSimilarity, levenshtein, normalize } = require("../utils/fuzzySearch.js");
 
 
 const createProduct = async(req,res)=>{
@@ -70,6 +70,35 @@ const getAllProducts = async(req,res)=>{
 }
 
 // GET /api/products/search?q=...&limit=...
+const getMinSimilarityThreshold = (query) => {
+    const len = query.length;
+    if (len <= 3) return 0.65;
+    if (len <= 5) return 0.6;
+    if (len <= 8) return 0.52;
+    return 0.45;
+};
+
+const getMaxEditDistance = (query) => {
+    const len = query.length;
+    if (len <= 4) return 1;
+    if (len <= 8) return 2;
+    return 3;
+};
+
+const buildSearchCandidates = (...fields) => {
+    const bucket = new Set();
+    for (const field of fields) {
+        const value = normalize(field);
+        if (!value) continue;
+        bucket.add(value); // full field
+        for (const token of value.split(" ")) {
+            const cleaned = token.trim();
+            if (cleaned) bucket.add(cleaned); // word-level matching
+        }
+    }
+    return Array.from(bucket);
+};
+
 const searchProducts = async (req, res) => {
     try {
         const q = normalize(req.query?.q);
@@ -89,14 +118,27 @@ const searchProducts = async (req, res) => {
         });
 
         const content = Array.isArray(products?.content) ? products.content : [];
+        const minSimilarity = getMinSimilarityThreshold(q);
+        const maxEditDistance = getMaxEditDistance(q);
         const scored = content
             .map((p) => {
                 const categoryName =
                     typeof p?.category === "object" ? (p.category?.name ?? "") : "";
-                const score = bestSimilarity(q, [p?.title, p?.brand, categoryName]);
-                return { product: p, score };
+                const title = normalize(p?.title);
+                const brand = normalize(p?.brand);
+                const category = normalize(categoryName);
+                const candidates = buildSearchCandidates(title, brand, category);
+                const score = bestSimilarity(q, candidates);
+                const bestDistance = Math.min(...candidates.map((c) => levenshtein(q, c)));
+                const hasDirectContain =
+                    title.includes(q) || brand.includes(q) || category.includes(q);
+                return { product: p, score, bestDistance, hasDirectContain };
             })
-            .filter((x) => x.score > 0.25)
+            .filter((x) =>
+                x.hasDirectContain ||
+                x.bestDistance <= maxEditDistance ||
+                x.score >= minSimilarity
+            )
             .sort((a, b) => b.score - a.score)
             .slice(0, limit)
             .map((x) => x.product);
