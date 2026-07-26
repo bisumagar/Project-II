@@ -1,5 +1,4 @@
 ecommerce-api-node/.env 
-.env
 # Logs
 logs
 *.log
